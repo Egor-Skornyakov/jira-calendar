@@ -1,0 +1,38 @@
+.btn {
+  border: none;
+  height: 50px;
+  padding: 0 10px;
+  color: $btn-color;
+  display: flex;
+  text-align: left;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  background: $btn-back;
+
+  &:hover {
+    background: $btn-back-hover;
+  }
+
+  &:active {
+    color: $btn-color-active;
+    background: $btn-back-active;
+  }
+
+  &_2 {
+    width: 150px;
+    height: 40px;
+    background: $btn-2-back;
+
+    &:hover {
+      background: $btn-2-back-hover;
+    }
+
+    &:active {
+      color: $btn-2-color-active;
+      background: $btn-2-back-active;
+    }
+  }
+
+}

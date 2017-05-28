@@ -1,0 +1,104 @@
+.users {
+  width: 460px;
+
+}
+.users__item {
+  position: relative;
+  margin: 0 0 10px;
+  padding: 21px 17px 22px 81px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 3px 0 0 rgba(0,0,0,0.1);
+}
+.users__pic {
+  overflow: hidden;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+}
+.users__content {
+  @include flexbox();
+  @include flex-direction();
+  @include justify-content(space-between);
+  @include align-items();
+
+  >div {
+    width: 44.5%;
+
+    &:first-child {
+      width: 50%;
+    }
+
+  }
+
+}
+.users__name {
+  overflow: hidden;
+  width: 100%;
+  margin: 3px 0 3px;
+  color: #4f595e;
+  font-size: 16px;
+  line-height: 20px;
+  @include main-font2();
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.users__range {
+  font-size: 14px;
+  line-height: 16px;
+  color: #999999;
+}
+.users__rest {
+  text-align: center;
+}
+.users__rest-days {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+  color: #4f595e;
+  font-size: 11px;
+  line-height: 11px;
+  text-align: center;
+
+  &_empty {
+    color: #e6e6e6;
+  }
+
+}
+.users__rest-count {
+  @include flexbox();
+  @include flex-direction();
+  @include justify-content(center);
+  @include align-items(center);
+  width: 40px;
+  height: 30px;
+  margin: 0 auto 6px;
+  font-size: 16px;
+  line-height: 16px;
+  color: #fff;
+  text-align: center;
+  border-radius: 30px;
+  @include main-font2();
+}
+.holidays {
+  background: #00bf8d;
+
+}
+.sick {
+  background: #8979cc;
+}
+.arrear {
+  background: #f20051;
+}
+.empty {
+  background: #f2f2f2;
+}

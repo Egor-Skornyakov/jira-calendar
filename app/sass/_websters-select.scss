@@ -1,0 +1,153 @@
+.websters-select {
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  position: relative;
+  width: auto;
+  cursor: pointer;
+  border-bottom: 1px dashed #999999;
+  color: #999999;
+  -webkit-transition: color 300ms ease-in-out, border-bottom 300ms ease-in-out;
+  transition: color 300ms ease-in-out, border-bottom 300ms ease-in-out;
+
+  &_opened {
+    color: #0086e0;
+    border-bottom-color: #0086e0;
+
+    .websters-select__arrow {
+      transform: rotate(180deg);
+    }
+
+  }
+
+  &_loading {
+    color: #e6e6e6;
+    border-bottom-color: transparent;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+      content: '';
+    }
+
+  }
+
+  &__arrow {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 20px;
+    transform-origin: center;
+    -webkit-transition: -webkit-transform 200ms ease-in-out;
+    transition: transform 200ms ease-in-out;
+
+    &:after,
+    &:before {
+      position: absolute;
+      top: 9px;
+      width: 10px;
+      height: 2px;
+      border-radius: 2px;
+      background: $websters-select-border;
+      content: '';
+    }
+
+    &:after {
+      left: 4px;
+      transform: rotate(70deg);
+
+    }
+
+    &:before {
+      right: 3px;
+      transform: rotate(-70deg);
+
+    }
+  }
+
+  &__item {
+    overflow: hidden;
+    box-sizing: border-box;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+  }
+
+  &_mobile {
+
+    select {
+      position: absolute;
+      top: 0;
+      bottom: -1px;
+      left: 1px;
+      width: 100%;
+    }
+
+  }
+
+  &_custom {
+
+    select {
+      position: absolute;
+      left: -100000px;
+    }
+
+  }
+
+  &__popup {
+    overflow: hidden;
+    position: absolute;
+    z-index: 10;
+    box-sizing: border-box;
+    background: $websters-select-popup-back;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px 0 rgba(0,0,0,0.3);
+
+    ul {
+      z-index: 1;
+    }
+
+    li {
+      position: relative;
+      white-space: nowrap;
+      overflow: hidden;
+      padding: 11px 40px;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 14px;
+      color: #4f595e;
+
+      &.active {
+        @include main-font2();
+        background: transparent;
+
+        &:after {
+          position: absolute;
+          top: 43%;
+          left: 14px;
+          width: 13px;
+          height: 6px;
+          border-left: 3px solid #4f595e;
+          border-bottom: 3px solid #4f595e;
+          content: '';
+          -webkit-transform: translateY(-50%) rotate(-45deg);
+          transform: translateY(-50%) rotate(-45deg);
+        }
+
+      }
+
+      &:hover {
+        background: #f2f2f2;
+      }
+
+    }
+
+  }
+
+}
