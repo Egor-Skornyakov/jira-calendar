@@ -5,7 +5,7 @@
             new WebstersSelect( {
                 obj: $( this ),
                 optionType: 1,
-                showType: 2
+                showType: 1
             } );
         } );
     } );
@@ -129,7 +129,8 @@ var WebstersSelect = function( params ){
                 list = $( '<ul></ul>'),
                 curScroll = _window.scrollTop(),
                 offset = _wrap.offset(),
-                maxHeight = 0,
+                maxHeightBottom = 0,
+                maxHeightTop = 0,
                 curIndex = _obj.find( 'option:selected' ).index(),
                 id = Math.round( Math.random() * 1000 );
 
@@ -161,25 +162,32 @@ var WebstersSelect = function( params ){
             _wrap.append( _popup );
             _wrap.addClass( 'websters-select_opened' );
 
-            _popup.css( {
-                left: 0,
-                top: _wrap.outerHeight()
-            } );
+            maxHeightBottom = _window.height() - ( _wrap.offset().top - _window.scrollTop() + _wrap.outerHeight() );
+            maxHeightTop = _wrap.offset().top - _window.scrollTop() - $('.site__header').innerHeight() - 5;
 
-            maxHeight = _popup.outerHeight();
-            if( maxHeight > _popup.find( 'li' ).eq( 0 ).outerHeight() * _visible ){
-                _popup.height( _popup.find( 'li' ).eq( 0 ).outerHeight() * _visible );
-                _scroll = _popup.perfectScrollbar();
-            }
-
-            if( _popup.outerHeight() + _wrap.offset().top > $('.site').innerHeight() ) {
+            if( maxHeightBottom <  maxHeightTop ) {
 
                 _popup.css( {
+                    'max-height': maxHeightTop,
                     top: 'auto',
                     bottom: _wrap.outerHeight()
                 } );
 
+            } else {
+
+                _popup.css( {
+                    'max-height': maxHeightBottom,
+                    left: 0,
+                    top: _wrap.outerHeight()
+                } );
+
             }
+
+            setTimeout( function() {
+
+                _scroll = _popup.perfectScrollbar();
+
+            }, 100 );
 
             if( _showType == 1 ){
                 _popup.css( {

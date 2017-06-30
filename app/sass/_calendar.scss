@@ -1,13 +1,18 @@
 .calendar {
+  overflow: hidden;
   position: relative;
   width: calc(100% - 470px);
+  margin: 0;
 }
 .calendar__content {
-  display: table;
-  width: 100%;
+  width: auto;
   height: 100%;
 }
 .calendar__row {
+  //@include flexbox();
+  //@include flex-direction();
+  //@include justify-content();
+  //@include align-items();
   position: relative;
   height: 90px;
   margin: 0 0 10px;
@@ -36,15 +41,7 @@
     width: 20px;
     height: 20px;
     border-radius: 80px;
-    background: transparent;
-    border-top: 2px solid transparent;
-    border-bottom: 2px solid #4f595e;
-    border-left: 2px solid #4f595e;
-    border-right: 2px solid transparent;
-    border-top: 2px solid #4f595e;
-    border-bottom: 2px solid #4f595e;
-    border-left: 2px solid transparent;
-    border-right: 2px solid transparent;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTk1LjUgMTk1LjUiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDE5NS41IDE5NS41OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4uc3Qwe2ZpbGw6I0UyRTZFRTt9LnN0MXtmaWxsOiM1Nzg1QzQ7fTwvc3R5bGU+PGc+PHBhdGggY2xhc3M9InN0MCIgZD0iTTk3LjcsMTk1LjVDNDMuOCwxOTUuNSwwLDE1MS42LDAsOTcuN1M0My44LDAsOTcuNywwczk3LjcsNDMuOCw5Ny43LDk3LjdTMTUxLjYsMTk1LjUsOTcuNywxOTUuNXogTTk3LjcsMjguN2MtMzguMSwwLTY5LjEsMzEtNjkuMSw2OS4xczMxLDY5LjEsNjkuMSw2OS4xczY5LjEtMzEsNjkuMS02OS4xUzEzNS44LDI4LjcsOTcuNywyOC43eiIvPjwvZz48cGF0aCBjbGFzcz0ic3QxIiBkPSJNMTExLjksMS4xTDExMS45LDEuMUMxMDcuMywwLjMsMTAyLjUsMCw5Ny43LDBDNDMuOCwwLDAsNDMuOCwwLDk3LjdjMCwzLDAuMSw2LjEsMC40LDlsMCwwYzAuNyw3LjMsNi44LDEyLjksMTQuMiwxMi45YzcuOSwwLDE0LjMtNi40LDE0LjMtMTQuM2MwLTAuNSwwLTAuOS0wLjEtMS40bDAsMGMtMC4yLTIuMS0wLjMtNC4xLTAuMy02LjJjMC0zOC4xLDMxLTY5LjEsNjkuMS02OS4xYzMuMywwLDYuNSwwLjIsOS43LDAuN2wwLDBjMC43LDAuMSwxLjUsMC4yLDIuMywwLjJjNy45LDAsMTQuMy02LjQsMTQuMy0xNC4zQzEyNCw4LDExOC44LDIuMSwxMTEuOSwxLjF6Ii8+PC9zdmc+);
     -webkit-animation: cwSpin 1s linear .2s infinite;
     animation: cwSpin .666s linear .2s infinite;
     content: '';
@@ -72,7 +69,7 @@
 
 }
 .calendar__month {
-  display: table-cell;
+  float: left;
 
   &:first-child {
 
@@ -84,28 +81,64 @@
   >div {
     position: relative;
     overflow: hidden;
-    @include flexbox();
-    @include flex-direction();
-    @include justify-content();
-    @include align-items();
+    //@include flexbox();
+    //@include flex-direction();
+    //@include justify-content();
+    //@include align-items();
     width: 480px;
     height: 90px;
     margin-left: 10px;
-    border-radius: 6px;
+    border-radius: 4px;
 
     >div {
       position: relative;
-      width: 7.57%;
+      height: 90px;
+      width: 39px;
+      float: left;
       background: #dcdfe2;
-      margin-left: 4px;
+      margin-left: 1px;
 
       &:first-child {
         margin-left: 0;
+        border-radius: 4px 0 0 4px;
+      }
+      &:nth-child(12) {
+        border-radius: 0 4px 4px 0;
+      }
+      &:last-child {
+
+        &:after {
+          display: none;
+        }
+
       }
       &.non-available {
         background: #d2d7db;
       }
+      &.separate {
 
+        &:after {
+          position: absolute;
+          z-index: 1;
+          top: 0;
+          right: 0;
+          width: 5px;
+          height: 100%;
+          background: #edeeef;
+          content: '';
+          -webkit-transform: translateX(2.5px);
+          transform: translateX(2.5px);
+        }
+
+      }
+      &[data-month="0"],
+      &[data-month="11"] {
+
+        &:after {
+          display: none;
+        }
+
+      }
     }
 
   }
@@ -116,6 +149,7 @@
   margin: 0;
 
   .calendar__month {
+    float: none;
     font-size: 12px;
     line-height: 12px;
 
@@ -129,7 +163,7 @@
       text-align: center;
 
       >div {
-        width: 37px;
+        //width: 37px;
         background: transparent;
       }
 
@@ -147,20 +181,25 @@
 .calendar_head {
   position: absolute;
   top: 0;
-  left: 489px;
-  width: calc(100% - 509px);
+  left: 491px;
+  width: calc(100% - 511px);
 
-  .ps-scrollbar-x-rail {
-    opacity: 0 !important;
-    visibility: hidden !important;
+  .calendar__row {
+    @include flexbox();
+    @include flex-direction();
+    @include justify-content();
+    @include align-items();
   }
-
   .calendar__month {
 
     >div {
+      @include flexbox();
+      @include flex-direction();
       @include justify-content(space-between);
+      @include align-items(flex-end);
 
       >div {
+        height: auto;
         margin-left: 0;
       }
 
@@ -209,6 +248,7 @@
     transform:rotate(360deg);
   }
 }
+
 
 
 

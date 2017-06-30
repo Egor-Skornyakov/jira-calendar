@@ -25,16 +25,10 @@ var paths = {
             ]
         },
         {
-            dist: 'ui.min.js',
+            dist: 'index2.min.js',
             contains: [
-                'app/js/jquery.popup.js',
+                'app/js/jquery.index2.js',
                 'app/js/jquery.websters-select.js'
-            ]
-        },
-        {
-            dist: 'tabs.min.js',
-            contains: [
-                'app/js/jquery.tabs.js'
             ]
         }
     ],

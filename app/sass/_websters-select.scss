@@ -1,6 +1,7 @@
 .websters-select {
   display: inline-block;
   vertical-align: top;
+  margin: 0 2px 0 0;
   box-sizing: border-box;
   position: relative;
   width: auto;
@@ -23,6 +24,7 @@
   &_loading {
     color: #e6e6e6;
     border-bottom-color: transparent;
+    pointer-events: none;
 
     &:after {
       position: absolute;
@@ -107,7 +109,7 @@
     box-sizing: border-box;
     background: $websters-select-popup-back;
     border-radius: 6px;
-    box-shadow: 0 10px 30px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.3);
 
     ul {
       z-index: 1;
