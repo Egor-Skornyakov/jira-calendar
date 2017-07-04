@@ -80,11 +80,7 @@
   }
   >div {
     position: relative;
-    overflow: hidden;
-    //@include flexbox();
-    //@include flex-direction();
-    //@include justify-content();
-    //@include align-items();
+    //overflow: hidden;
     width: 480px;
     height: 90px;
     margin-left: 10px;
@@ -98,6 +94,15 @@
       background: #dcdfe2;
       margin-left: 1px;
 
+      &:before {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100% + 10px);
+        content: '';
+      }
       &:first-child {
         margin-left: 0;
         border-radius: 4px 0 0 4px;
@@ -131,11 +136,28 @@
         }
 
       }
-      &[data-month="0"],
-      &[data-month="11"] {
+      &[data-month="0"] {
 
         &:after {
           display: none;
+        }
+
+      }
+      &.hidden {
+        opacity: 0;
+      }
+      &.month-hover {
+
+        &:before {
+          background: rgba(0, 21, 40, 0.03);
+        }
+
+        &.separate {
+
+          &:after {
+            opacity: 0;
+          }
+
         }
 
       }
@@ -178,11 +200,16 @@
   font-size: 16px;
   line-height: 16px;
 }
+.calendar_content {
+  margin-top: -7px;
+  padding-top: 7px;
+}
 .calendar_head {
   position: absolute;
   top: 0;
-  left: 491px;
+  left: 490px;
   width: calc(100% - 511px);
+  height: 73px;
 
   .calendar__row {
     @include flexbox();
@@ -228,6 +255,25 @@
     top: auto;
     bottom: 20px;
     background: #8979cc;
+  }
+
+}
+.calendar__decorator-hover {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 39px;
+  height: 100%;
+  background: rgba(0, 21, 40, 0.03);
+  pointer-events: none;
+  transition: opacity 0.3s linear, visibility 0.3s linear;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
   }
 
 }

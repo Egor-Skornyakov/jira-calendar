@@ -95,6 +95,38 @@
 
                     }
                 );
+                _calendar.on({
+                    mousemove: function (e) {
+
+                        _obj.find('.calendar__decorator-hover').addClass('visible');
+
+                        var e = window.event;
+
+                        var posX = e.clientX;
+
+                        _calendarHead.find('.calendar__content .calendar__month>div>div').each(function () {
+
+                            var curItem = $(this),
+                                offsetLeft = $(this).offset().left,
+                                width = curItem.width();
+
+                            if( posX >= offsetLeft && posX < offsetLeft + width ) {
+
+                                _obj.find('.calendar__decorator-hover').removeClass('visible');
+                                _obj.find('.calendar__decorator-hover').addClass('visible');
+                                _obj.find('.calendar__decorator-hover').offset( {left: offsetLeft});
+
+                            }
+
+                        });
+
+                    },
+                    mouseleave: function (e) {
+
+                        _obj.find('.calendar__decorator-hover').removeClass('visible');
+
+                    }
+                });
 
             },
             _addYearsToArr = function(year) {
@@ -288,9 +320,21 @@
 
                     for( var i = 0; i <= sickTotalDays.length-1; i++ ) {
 
-                        if( new Date(sickTotalDays[i]).getTime() >= new Date( _endYear + '/' + month + '/01').getTime() ) {
+                        if( month <= _endMonth ) {
 
-                            sickDaysInMonth++;
+                            if( new Date(sickTotalDays[i]).getTime() >= new Date( _endYear + '/' + month + '/01').getTime() ) {
+
+                                sickDaysInMonth++;
+
+                            }
+
+                        } else {
+
+                            if( new Date(sickTotalDays[i]).getTime() >= new Date( (_endYear-1) + '/' + month + '/01').getTime() ) {
+
+                                sickDaysInMonth++;
+
+                            }
 
                         }
 
@@ -428,7 +472,6 @@
 
                                 separateClass = 'separate';
                             }
-
 
                             if( (11 - j) > nowDateMonth ) {
 
@@ -872,6 +915,8 @@
                             'transform': 'translate3d('+ (transition) +'px, 0px, 0px)'
                         } );
 
+                        _obj.find('.calendar__decorator-hover').removeClass('visible');
+
                     }
                 } );
 
@@ -1033,6 +1078,10 @@
                 _initScroll();
                 _addEvents();
                 _getAllUsers();
+
+                _calendarContent.append('<span class="calendar__decorator-hover"></span>');
+                _calendarHead.append('<span class="calendar__decorator-hover"></span>');
+
             };
 
         //public properties
