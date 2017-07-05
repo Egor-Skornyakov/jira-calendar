@@ -25,8 +25,8 @@
             _endYear = new Date().getFullYear(),
             _endMonth = parseInt( new Date().getMonth()) + 1,
             _endDate = new Date().getDate(),
-            _vacationPerYear = parseInt( _users.data('available-vacation-days') ),
-            _sicksPerYear = parseInt( _users.data('available-sick-days') ),
+            _vacationPerYear = parseInt( availableVacationsDays ),
+            _sicksPerYear = parseInt( availableSickDays ),
             _select,
             _countAllUsers = 0,
             _countUsers = 0,
@@ -734,7 +734,7 @@
                     dataType: 'json',
                     type: "get",
                     beforeSend: function (xhr) {
-                        xhr.setRequestHeader ("Authorization", "Basic " + btoa('anton@alterplay.com' + ":" + 'zaq123'));
+                        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user + ":" + userPassword));
                     },
                     success: function (data) {
 
@@ -758,7 +758,7 @@
                     dataType: 'json',
                     type: "get",
                     beforeSend: function (xhr) {
-                        xhr.setRequestHeader ("Authorization", "Basic " + btoa('anton@alterplay.com' + ":" + 'zaq123'));
+                        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user + ":" + userPassword));
                     },
                     success: function (data) {
 
@@ -825,7 +825,7 @@
                     dataType: 'json',
                     type: "get",
                     beforeSend: function (xhr) {
-                        xhr.setRequestHeader ("Authorization", "Basic " + btoa('anton@alterplay.com' + ":" + 'zaq123'));
+                        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user + ":" + userPassword));
                     },
                     success: function (data) {
 
@@ -852,7 +852,7 @@
                     dataType: 'json',
                     type: "get",
                     beforeSend: function (xhr) {
-                        xhr.setRequestHeader ("Authorization", "Basic " + btoa('anton@alterplay.com' + ":" + 'zaq123'));
+                        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user + ":" + userPassword));
                     },
                     success: function (sickObj) {
 
@@ -942,7 +942,7 @@
 
                     if( avatar == undefined ) {
 
-                        avatar = _users.data('unknown');
+                        avatar = unknownUserAvatar;
 
                     }
 
@@ -994,7 +994,7 @@
                     dataType: 'html',
                     type: "put",
                     beforeSend: function (xhr) {
-                        xhr.setRequestHeader ("Authorization", "Basic " + btoa('anton@alterplay.com' + ":" + 'zaq123'));
+                        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user + ":" + userPassword));
                     },
                     success: function (data) {
 
